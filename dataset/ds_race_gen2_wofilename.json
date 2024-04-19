@@ -1,0 +1,74 @@
+{
+	"name": "ds_race_gen2_wofilename",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_data_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"race_dir": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().race_dir",
+					"type": "Expression"
+				},
+				"fileSystem": "formula-one-data"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"MRData": {
+					"type": "object",
+					"properties": {
+						"xmlns": {
+							"type": "string"
+						},
+						"series": {
+							"type": "string"
+						},
+						"url": {
+							"type": "string"
+						},
+						"limit": {
+							"type": "string"
+						},
+						"offset": {
+							"type": "string"
+						},
+						"total": {
+							"type": "string"
+						},
+						"SeasonTable": {
+							"type": "object",
+							"properties": {
+								"Seasons": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"season": {
+												"type": "string"
+											},
+											"url": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

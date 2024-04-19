@@ -1,0 +1,27 @@
+{
+	"name": "ds_copy_api",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_copy_api",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"rel_url": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().rel_url",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

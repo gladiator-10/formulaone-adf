@@ -1,0 +1,9 @@
+{
+	"name": "DF-Formula-one",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "da0fa137-cd3c-4203-8348-1ec4a2e9afa9",
+		"tenantId": "a4b78441-eef3-408b-ba86-9a1d8f29e740"
+	}
+}
