@@ -1,0 +1,26 @@
+{
+	"name": "ds_result_api",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_copy_api",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"result": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().result",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}
