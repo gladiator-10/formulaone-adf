@@ -1,0 +1,16 @@
+{
+	"name": "ds_post_formulaone",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_post_formulaone",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzurePostgreSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "formul-one-audit-table",
+			"table": "job_metadata_table"
+		}
+	}
+}

@@ -12,7 +12,7 @@
 						"value": "@pipeline().parameters.race_list",
 						"type": "Expression"
 					},
-					"batchCount": 10,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "act_set_seasons",
@@ -139,6 +139,9 @@
 				"type": "String"
 			},
 			"round_id": {
+				"type": "String"
+			},
+			"start_time": {
 				"type": "String"
 			}
 		},
