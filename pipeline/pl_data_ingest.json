@@ -378,7 +378,7 @@
 				}
 			},
 			{
-				"name": "act_lookup_job_status3",
+				"name": "act_lookup_job_status4",
 				"type": "Lookup",
 				"dependsOn": [
 					{
@@ -409,6 +409,41 @@
 						"referenceName": "ds_post_formulaone",
 						"type": "DatasetReference"
 					}
+				}
+			},
+			{
+				"name": "act_lookup_job_status3",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "act_for_seasons_iterate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzurePostgreSqlSource",
+						"query": {
+							"value": "UPDATE formulaone_audit.job_metadata_tbl\nSET end_time = '@{formatDateTime(utcnow(), 'yyyy-MM-dd HH:mm:ss')}',status ='success'\nWHERE job_id = '@{formatDateTime(variables('start_time'),'yyyyMMddHHmm')}' AND task_name = 'race_api';\n\ninsert into formulaone_audit.job_metadata_tbl (job_id,job_name,task_name,start_time,status) VALUES ('@{formatDateTime(variables('start_time'),'yyyyMMddHHmm')}','ingest_results_api','results_api','@{variables('start_time')}',\n'In-Progress');\n\nselect job_id from formulaone_audit.job_metadata_tbl;",
+							"type": "Expression"
+						},
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_post_formulaone",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
