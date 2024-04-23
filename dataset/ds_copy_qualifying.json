@@ -1,0 +1,26 @@
+{
+	"name": "ds_copy_qualifying",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_copy_api",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"qualifying": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().qualifying",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}
