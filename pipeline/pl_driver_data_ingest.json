@@ -1,0 +1,62 @@
+{
+	"name": "pl_driver_data_ingest",
+	"properties": {
+		"activities": [
+			{
+				"name": "act_copy_driver_data_from_api",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_driver_api",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_driver_gen2",
+						"type": "DatasetReference",
+						"parameters": {
+							"driver_dir": {
+								"value": "@concat('bronze/drivers/',string(utcnow('yyyyMMdd')))",
+								"type": "Expression"
+							},
+							"driver_file_name": "drivers.json"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
