@@ -1,0 +1,26 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_copy_api",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"rel_qual_url": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().rel_qual_url",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}

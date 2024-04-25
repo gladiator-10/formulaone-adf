@@ -1,0 +1,53 @@
+{
+	"name": "ds_qual_copy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_gen2_json",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dir_path": {
+				"type": "String"
+			},
+			"file_name": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().file_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().dir_path",
+					"type": "Expression"
+				},
+				"fileSystem": "formula-one-data"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"constructorId": {
+					"type": "integer"
+				},
+				"constructorRef": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"nationality": {
+					"type": "string"
+				},
+				"url": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
